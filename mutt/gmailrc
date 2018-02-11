@@ -1,0 +1,13 @@
+#Change these for your Gmail:
+
+set mbox_type	= Maildir
+set sendmail	= "/usr/local/bin/msmtp"
+
+set folder 	= ~/mail/gmail
+set spoolfile	= "+INBOX"
+set mbox	= "+INBOX"
+set postponed	= "+Drafts"
+unset record
+
+mailboxes +INBOX
+
