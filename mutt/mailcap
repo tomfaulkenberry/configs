@@ -1,5 +1,20 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# MS Word documents
+application/msword; ~/.config/mutt/view_attachment.sh %s "-" '/Applications/Microsoft\ Word.app/'
 
-text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal;
+# Images
+image/jpg; ~/.config/mutt/view_attachment.sh %s jpg
+image/jpeg; ~/.config/mutt/view_attachment.sh %s jpg
+image/pjpeg; ~/.config/mutt/view_attachment.sh %s jpg
+image/png; ~/.config/mutt/view_attachment.sh %s png
+image/gif; ~/.config/mutt/view_attachment.sh %s gif
 
-image/*; ~/.config/mutt/muttimage.sh %s ; copiousoutput
+# PDFs
+application/pdf; ~/.config/mutt/view_attachment.sh %s pdf
+
+# HTML
+#text/html; ~/.config/mutt/view_attachment.sh %s html
+#text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; mv %s %s.html && qutebrowser %s.html > /dev/null; needsterminal; 
+
+# Unidentified files
+application/octet-stream; ~/.config/mutt/view_attachment.sh %s "-"

@@ -5,8 +5,8 @@ maxsyncaccounts = 1
 [Account gmail]
 localrepository = gmail-local
 remoterepository = gmail-remote
-autorefresh = 0.5
-quick = 10
+#autorefresh = 0.5
+#quick = 10
 
 [Repository gmail-local]
 type = Maildir
@@ -20,5 +20,5 @@ remotepass = PWD
 realdelete = no
 sslcacertfile = ~/.offlineimap/certificates.pem
 folderfilter = lambda folder: folder not in ['[Gmail]/Trash','[Gmail]/Spam','[Gmail]/All Mail',]
-keepalive = 60
-holdconnectionopen = yes
+#keepalive = 60
+#holdconnectionopen = yes

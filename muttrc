@@ -1,39 +1,115 @@
-source ~/.config/mutt/gmailrc
 source ~/.config/mutt/muttcol
 source ~/.config/mutt/aliases
 
-set sort = 'reverse-date'
-set editor = "emacs -nw %s"
-set timeout = "5"
-set mail_check = "10"
+# Paths --------------------------------------
+set folder 	= ~/mail/gmail
 set mailcap_path = ~/.config/mutt/mailcap
-set date_format="%m/%d %I:%M"
-set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
-set pager_index_lines = 10
 
-auto_view text/html
+# Basic Options -------------------------------
+set wait_key = no
+set mbox_type	= Maildir
+set timeout = 3
+set mail_check = 0
+unset move
+set delete
+unset confirmappend
+set quit
+unset mark_old
+set pipe_decode
+set thorough_search
+
+# Status Bar ---------------------------------
+set status_chars = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options ------------------------------
+ignore *
+unignore from: to: date: subject:
+unhdr_order *
+hdr_order from: to: cc: date: subject:
+
+# Account Settings --------------------------
+# Default inbox.
+set spoolfile	= "+INBOX"
+
+# Mailboxes to show in the sidebar.
+mailboxes +[Gmail]/INBOX
+
+# Other special folders
+set mbox	= "+INBOX"
+set postponed	= "+Drafts"
+
+# Index View Options -------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads
+set sort_aux = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Index Key Bindings -----------------------
+bind index G last-entry
+bind index gg first-entry
+bind index R group-reply
+bind index <tab> sync-mailbox
+bind index <space> collapse-thread
+
+# Pager View Options --------------------------------
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set menu_scroll
+set tilde
+unset markers
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
+
+# Pager Key Bindings --------------------
+bind pager k previous-line
+bind pager j next-line
+bind pager gg top
+bind pager G bottom
+bind attach <return> view-mailcap
+
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>"
+
 
 mono bold bold
 mono underline underline
 mono indicator reverse
 color index yellow default '.*'
-color index_author red default '.*'
-color index_number blue default
-color index_subject cyan default '.s'
-color index_size green default
+#color index_author red default '.*'
+#color index_number blue default
+#color index_subject cyan default '.s'
+#color index_size green default
 color normal default default
 color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 color body brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 
-#bind editor <space> noop
-#bind index G last-entry
-#bind index gg first-entry
-#bind index d half-down
-#bind index u half-up
-#bind index D delete-message
-#bind index U undelete-message
-#bind index F search 
-#bind index R group-reply
 
+# Compose View Options ---------------------
+set realname = "Thomas J. Faulkenberry"
+set envelope_from
+set sig_dashes
+#set edit_headers
+#set fast_reply
+#set askcc
+set fcc_attach
+unset mime_forward
+set forward_format = "Fwd: %s"
+set forward_decode
+set attribution = "On %d, %n wrote:"
+set reverse_name
+set include
+set forward_quote
 
+set editor = "emacs -nw %s"
+
+set from = "tomfaulkenberry@gmail.com"
+set sendmail	= "/usr/local/bin/msmtp"
+set sendmail_wait = 0
+unset record
