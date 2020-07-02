@@ -96,3 +96,7 @@
 (setq mu4e-sent-messages-behavior 'delete
       mu4e-compose-signature-auto-include 'nil)
 
+;; set up LaTeX path for AUCTeX (needed for Catalina)
+(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
+(setq exec-path (append exec-path '("/Library/TeX/texbin/")))
+
