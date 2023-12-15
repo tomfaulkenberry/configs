@@ -1,0 +1,14 @@
+pandoc
+ranger
+emacs
+mactex
+obs
+opensesame
+r
+rstudio
+slack
+alfred
+font-source-code-pro
+istat-menus
+iterm2
+rectangle
